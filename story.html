@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض القصص</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        #content {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            display: inline-block;
+            width: 80%;
+        }
+        .story-item {
+            background: #e3e3e3;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📖 قائمة القصص</h1>
+    <div id="content">جاري تحميل القصص...</div>
+
+    <script>
+        // 1️⃣ استخراج اسم القسم من الرابط
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get("category");
+
+        // 2️⃣ تحديد مكان عرض القصص
+        const contentDiv = document.getElementById("content");
+
+        // 3️⃣ بيانات القصص لكل قسم
+        const stories = {
+            "q1": ["قصة الطفل الشجاع", "الأرنب والسلحفاة", "النملة الذكية"],
+            "q2": ["قصة البيت المسكون", "الظلال المخيفة", "الغرفة المغلقة"],
+            "q3": ["رواية الحب الضائع", "رواية الطريق الطويل", "رواية الوعد الأخير"]
+        };
+
+        // 4️⃣ عرض القصص الخاصة بالقسم المختار
+        if (category && stories[category]) {
+            contentDiv.innerHTML = stories[category]
+                .map(story => `<div class="story-item">${story}</div>`)
+                .join("");
+        } else {
+            contentDiv.innerHTML = "<p style='color: red;'>⚠️ هذا القسم غير موجود</p>";
+        }
+    </script>
+
+</body>
+</html>
