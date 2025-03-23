@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل ترتيب الأقسام</title>
+    <style>
+        /* إعادة تعيين الهوامش والحشوات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* تصميم الصفحة بالكامل */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* تصميم الحاوية */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
+            gap: 20px; /* المسافة بين الصناديق */
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        /* تصميم الصناديق */
+        .box {
+            background: linear-gradient(135deg, #ffffff, #f1f1f1);
+            border-radius: 20px;
+            box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* تأثيرات التحويم (Hover) */
+        .box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* تصميم العنوان */
+        .box h2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        /* تصميم الأيقونات */
+        .icon {
+            font-size: 48px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* تصميم النقاط الملونة */
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-top: 15px;
+        }
+
+        .green-dot {
+            background-color: #28a745;
+        }
+
+        .red-dot {
+            background-color: #dc3545;
+        }
+
+        /* ألوان الحدود */
+        .green {
+            border: 2px solid #28a745;
+        }
+
+        .red {
+            border: 2px solid #dc3545;
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr); /* عمودين للشاشات الصغيرة */
+            }
+
+            .box h2 {
+                font-size: 20px;
+            }
+
+            .icon {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr; /* عمود واحد للشاشات الصغيرة جدًا */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- الصف الأول -->
+        <div class="box">
+            <div class="icon">📁</div>
+            <h2>قسم 1</h2>
+            <div class="dot green-dot"></div>
+        </div>
+        <div class="box">
+            <div class="icon">📂</div>
+            <h2>قسم 2</h2>
+            <div class="dot red-dot"></div>
+        </div>
+        <div class="box">
+            <div class="icon">📅</div>
+            <h2>قسم 3</h2>
+            <div class="dot green-dot"></div>
+        </div>
+
+        <!-- الصف الثاني -->
+        <div class="box">
+            <div class="icon">📊</div>
+            <h2>قسم 4</h2>
+            <div class="dot red-dot"></div>
+        </div>
+        <div class="box">
+            <div class="icon">📈</div>
+            <h2>قسم 5</h2>
+            <div class="dot green-dot"></div>
+        </div>
+        <div class="box">
+            <div class="icon">📉</div>
+            <h2>قسم 6</h2>
+            <div class="dot red-dot"></div>
+        </div>
+    </div>
+</body>
+</html>
