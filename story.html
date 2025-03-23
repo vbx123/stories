@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض القصص</title>
+</head>
+<body>
+    <h1 id="categoryTitle">تحميل...</h1>
+    <div id="storiesContainer">جاري تحميل القصص...</div>
+
+    <script>
+        // استخراج معرف القسم من الرابط
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get("category");
+
+        // البيانات التجريبية لكل قسم (يمكنك استبدالها بقاعدة بيانات)
+        const storiesData = {
+            q1: { title: "قصص الأطفال", stories: ["قصة الأرنب الذكي", "حكاية القطة المشاكسة"] },
+            q2: { title: "قصص الرعب", stories: ["منزل الأشباح", "الغرفة المسكونة"] },
+            q3: { title: "روايات جديدة", stories: ["رواية الغموض", "حكاية المدينة الضائعة"] }
+        };
+
+        // عرض البيانات بناءً على القسم المختار
+        if (storiesData[category]) {
+            document.getElementById("categoryTitle").innerText = storiesData[category].title;
+            const storiesContainer = document.getElementById("storiesContainer");
+            storiesContainer.innerHTML = storiesData[category].stories
+                .map(story => `<p>${story}</p>`)
+                .join("");
+        } else {
+            document.getElementById("categoryTitle").innerText = "القسم غير موجود!";
+            document.getElementById("storiesContainer").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
