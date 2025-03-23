@@ -9,29 +9,27 @@
     <h1 id="categoryTitle">تحميل...</h1>
     <div id="storiesContainer">جاري تحميل القصص...</div>
 
-    <script>
-        // استخراج معرف القسم من الرابط
-        const urlParams = new URLSearchParams(window.location.search);
-        const category = urlParams.get("category");
+<script>
+    // 1️⃣ استخراج اسم القسم من الرابط
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
 
-        // البيانات التجريبية لكل قسم (يمكنك استبدالها بقاعدة بيانات)
-        const storiesData = {
-            q1: { title: "قصص الأطفال", stories: ["قصة الأرنب الذكي", "حكاية القطة المشاكسة"] },
-            q2: { title: "قصص الرعب", stories: ["منزل الأشباح", "الغرفة المسكونة"] },
-            q3: { title: "روايات جديدة", stories: ["رواية الغموض", "حكاية المدينة الضائعة"] }
-        };
+    // 2️⃣ تحديد مكان عرض القصص
+    const contentDiv = document.getElementById("content");
 
-        // عرض البيانات بناءً على القسم المختار
-        if (storiesData[category]) {
-            document.getElementById("categoryTitle").innerText = storiesData[category].title;
-            const storiesContainer = document.getElementById("storiesContainer");
-            storiesContainer.innerHTML = storiesData[category].stories
-                .map(story => `<p>${story}</p>`)
-                .join("");
-        } else {
-            document.getElementById("categoryTitle").innerText = "القسم غير موجود!";
-            document.getElementById("storiesContainer").innerHTML = "";
-        }
-    </script>
+    // 3️⃣ بيانات القصص لكل قسم
+    const stories = {
+        "q1": ["قصة الطفل الشجاع", "الأرنب والسلحفاة", "النملة الذكية"],
+        "q2": ["قصة البيت المسكون", "الظلال المخيفة", "الغرفة المغلقة"],
+        "q3": ["رواية الحب الضائع", "رواية الطريق الطويل", "رواية الوعد الأخير"]
+    };
+
+    // 4️⃣ عرض القصص الخاصة بالقسم المحدد
+    if (category && stories[category]) {
+        contentDiv.innerHTML = stories[category].map(story => `<p>${story}</p>`).join("");
+    } else {
+        contentDiv.innerHTML = "<p style='color: red;'>⚠️ هذا القسم غير موجود</p>";
+    }
+</script>
 </body>
 </html>
