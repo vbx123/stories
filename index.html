@@ -4,94 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الصفحة الرئيسية</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        .category-list {
-            list-style: none;
-            padding: 0;
-        }
-        .category-list li {
-            margin: 10px 0;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            display: inline-block;
-            width: 200px;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .category-list li a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-    <h1>📚 اختر قسم القصص</h1>
-    <ul class="category-list">
-        <li><a href="story.html?category=q1">قصص الأطفال</a></li>
-        <li><a href="story.html?category=q2">قصص الرعب</a></li>
-        <li><a href="story.html?category=q3">روايات جديدة</a></li>
-    </ul>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الرئيسية</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        .category-list {
-            list-style: none;
+  <style>
+        * {
+            margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        .category-list li {
-            margin: 10px 0;
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
             padding: 10px;
-            background: #007bff;
+            width: 100%;
+        }
+
+        .app-bar {
+            width: 100%;
+            background: linear-gradient(135deg, #007bff, #0056b3);
             color: white;
-            display: inline-block;
-            width: 200px;
             text-align: center;
-            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .scrolled {
+            background: linear-gradient(135deg, #ff5722, #e64a19) !important;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 95vw;
+            max-width: 360px;
+            margin-top: 60px;
+        }
+
+        .box {
+            background: linear-gradient(135deg, #ffffff, #f1f1f1);
+            border-radius: 15px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1/1;
             cursor: pointer;
         }
-        .category-list li a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
 
-    <h1>📚 اختر قسم القصص</h1>
-    <ul class="category-list">
-        <li><a href="story.html?category=q1">قصص الأطفال</a></li>
-        <li><a href="story.html?category=q2">قصص الرعب</a></li>
-        <li><a href="story.html?category=q3">روايات جديدة</a></li>
-    </ul>
+        .box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .box h2 {
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .box img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 3px;
+        }
+
+        .green-dot { background-color: #28a745; }
+        .red-dot { background-color: #dc3545; }
+
+        .green { border: 1px solid #28a745; }
+        .red { border: 1px solid #dc3545; }
+
+        @media (max-width: 1080px) {
+            .container {
+                width: 100%;
+                max-width: 320px;
+            }
+            .box {
+                padding: 5px;
+            }
+            .box h2 { font-size: 10px; }
+            .box img { width: 40px; height: 40px; }
+        }
+  </style>
+
+  <div class="app-bar" id="appBar">📖 قائمة القصص</div>
+
+  <div class="container">
+        <div class="box red" data-category="q1" onclick="openCategory(this)">
+            <img src="https://via.placeholder.com/40" alt="قصص الأطفال">
+            <h2>قصص الأطفال</h2>
+            <span class="dot red-dot"></span>
+        </div>
+
+        <div class="box red" data-category="q2" onclick="openCategory(this)">
+          <img src="https://via.placeholder.com/40" alt="قصص الأنبياء">
+           <h2>قصص الأنبياء</h2>
+            <span class="dot red-dot"></span>
+        </div>
+
+        <div class="box green" data-category="q3" onclick="openCategory(this)">
+            <img src="https://via.placeholder.com/40" alt="قصص الصحابة">
+            <h2>قصص الصحابة</h2>
+            <span class="dot green-dot"></span>
+        </div>
+
+        <div class="box green" data-category="q4" onclick="openCategory(this)">
+            <img src="https://via.placeholder.com/40" alt="الروايات">
+            <h2>الروايات</h2>
+            <span class="dot green-dot"></span>
+        </div>
+
+        <div class="box green" data-category="q5" onclick="openCategory(this)">
+            <img src="https://via.placeholder.com/40" alt="قصص الخيال العلمي">
+            <h2>قصص الخيال العلمي</h2>
+            <span class="dot green-dot"></span>
+        </div>
+
+        <div class="box red" data-category="q6" onclick="openCategory(this)">
+            <img src="https://via.placeholder.com/40" alt="قصص الرعب">
+            <h2>قصص الرعب</h2>
+            <span class="dot red-dot"></span>
+        </div>
+
+    </div>
+
+    <script>
+        // تغيير لون الـ App Bar عند التمرير
+        window.addEventListener("scroll", function() {
+            let appBar = document.getElementById("appBar");
+            if (window.scrollY > 50) {
+                appBar.classList.add("scrolled");
+            } else {
+                appBar.classList.remove("scrolled");
+            }
+        });
+
+        // فتح صفحة العرض مع القسم المختار
+        function openCategory(element) {
+            let category = element.getAttribute("data-category");
+            window.location.href = `story.html?category=${category}`;
+        }
+    </script>
 
 </body>
-        </html>
+                </html>
